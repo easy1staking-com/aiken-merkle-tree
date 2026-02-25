@@ -2,42 +2,55 @@
   "preamble": {
     "title": "aiken-lang/aiken_merkle_tree",
     "description": "Aiken contracts for project 'aiken-lang/aiken-merkle-tree'",
-    "version": "0.0.0",
-    "plutusVersion": "v2",
+    "version": "0.1.0",
+    "plutusVersion": "v3",
+    "compiler": {
+      "name": "Aiken",
+      "version": "v1.1.21+42babe5"
+    },
     "license": "Apache-2.0"
   },
   "validators": [
     {
-      "title": "sample.spend_validator",
+      "title": "merkle_sample.markle_sample.spend",
       "datum": {
         "title": "datum",
         "schema": {
-          "$ref": "#/definitions/sample~1MyDatum"
+          "$ref": "#/definitions/merkle_sample~1MyDatum"
         }
       },
       "redeemer": {
         "title": "redeemer",
         "schema": {
-          "$ref": "#/definitions/sample~1MyRedeemer"
+          "$ref": "#/definitions/merkle_sample~1MyRedeemer"
         }
       },
-      "compiledCode": "590174010000323232323232323222232325333008323232323232333332322222332232333001001003002222533301c00113371e0120042646464a66603866e1d200000113330060063300d375c6040603400600a004266600c00c6601a00a6eb8c080c06800c008c068008c07c008c074004c018c00400c00888c00ccdc500100091b920010050010032001375c602200260220046eb0c03c004c020018dd7180680098030028a4c2c64a66601066e1d2000001132323232533300f3011002132498c8cc004004010894ccc044004526132330030033014002323253330103370e900000089919299980a980b8010a4c2c6eb8c054004c03800854ccc040cdc3a400400226464a66602a602e0042930b1bae3015001300e00216300e001301200116375c601e002601e0046eb0c034004c01801058c01800cc94ccc01ccdc3a400000226464a666018601c0042930b1bae300c0013005004163005003230053754002460066ea80055cd2ab9d5573caae7d5d0aba21",
-      "hash": "51f942407dea049abf875674c1787d787cdd619e76a298ff2611ea61"
+      "compiledCode": "5901f801010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cc0200092225980099b8748008c01cdd500144cc8a6002601a005300d300e002912cc004c00cc02cdd500144c8c96600260240050038b201e375c602000260186ea800a2c805122259800980218061baa00889919192cc004c05000a264660020026eb0c05001088c966002005159800980518091baa0088991991194c0040066e48dd7180d180d980b9baa0129bac301a3017375402480088896600200313375e008600c660366ea40092f5c113322598009809180d1baa0028cc0040166eb8c078c06cdd519803980f180d9baa00230083301d375200897ae0800a00a8cc0040166eb8c078c06cdd51980398041980e9ba90044bd70180f180d9baa002800a00a40646038002603a00280d088c00ccc060dd49b92337146eb8c064c058dd50011bae30193016375400297ae0301730143754602e60286ea8024dd2a4001164045132332259800980680144c966002603600313300b301a0010028b20303016375400715980099b874800800a264b3001301b001899805980d000801459018180b1baa0038b2028405060266ea80044c008c06000cc05800901418010014590111bae30120013012001300d375401116402c300837540046e1d20008b200c180400098019baa0088a4d13656400401",
+      "hash": "a8d846a29de99aee005626c450467f9c20c6809bebf00050c3d86c0b"
+    },
+    {
+      "title": "merkle_sample.markle_sample.else",
+      "redeemer": {
+        "schema": {}
+      },
+      "compiledCode": "5901f801010029800aba2aba1aba0aab9faab9eaab9dab9a488888896600264653001300800198041804800cc0200092225980099b8748008c01cdd500144cc8a6002601a005300d300e002912cc004c00cc02cdd500144c8c96600260240050038b201e375c602000260186ea800a2c805122259800980218061baa00889919192cc004c05000a264660020026eb0c05001088c966002005159800980518091baa0088991991194c0040066e48dd7180d180d980b9baa0129bac301a3017375402480088896600200313375e008600c660366ea40092f5c113322598009809180d1baa0028cc0040166eb8c078c06cdd519803980f180d9baa00230083301d375200897ae0800a00a8cc0040166eb8c078c06cdd51980398041980e9ba90044bd70180f180d9baa002800a00a40646038002603a00280d088c00ccc060dd49b92337146eb8c064c058dd50011bae30193016375400297ae0301730143754602e60286ea8024dd2a4001164045132332259800980680144c966002603600313300b301a0010028b20303016375400715980099b874800800a264b3001301b001899805980d000801459018180b1baa0038b2028405060266ea80044c008c06000cc05800901418010014590111bae30120013012001300d375401116402c300837540046e1d20008b200c180400098019baa0088a4d13656400401",
+      "hash": "a8d846a29de99aee005626c450467f9c20c6809bebf00050c3d86c0b"
     }
   ],
   "definitions": {
     "ByteArray": {
       "dataType": "bytes"
     },
-    "List$aiken_merkle_tree/mt/ProofItem$ByteArray": {
+    "aiken_merkle_tree/mt/Proof<ByteArray>": {
+      "title": "Proof<ByteArray>",
       "dataType": "list",
       "items": {
-        "$ref": "#/definitions/aiken_merkle_tree~1mt~1ProofItem$ByteArray"
+        "$ref": "#/definitions/aiken_merkle_tree~1mt~1ProofItem<ByteArray>"
       }
     },
-    "aiken_merkle_tree/mt/ProofItem$ByteArray": {
+    "aiken_merkle_tree/mt/ProofItem<ByteArray>": {
       "title": "ProofItem",
-      "description": "An opaque proof element.",
+      "description": "An proof element.",
       "anyOf": [
         {
           "title": "Left",
@@ -64,9 +77,21 @@
     "aiken_merkle_tree/mt/Root": {
       "title": "Root",
       "description": "An opaque root. Use [to_hash](#to_hash) and\n [from_hash](#from_hash) to convert back-and-forth between this and\n classic hashes. This type exists mainly to disambiguate between standard\n value (leaf) hash from tree hashes.",
-      "dataType": "bytes"
+      "anyOf": [
+        {
+          "title": "Root",
+          "dataType": "constructor",
+          "index": 0,
+          "fields": [
+            {
+              "title": "inner",
+              "$ref": "#/definitions/ByteArray"
+            }
+          ]
+        }
+      ]
     },
-    "sample/MyDatum": {
+    "merkle_sample/MyDatum": {
       "title": "MyDatum",
       "anyOf": [
         {
@@ -82,7 +107,7 @@
         }
       ]
     },
-    "sample/MyRedeemer": {
+    "merkle_sample/MyRedeemer": {
       "title": "MyRedeemer",
       "anyOf": [
         {
@@ -92,7 +117,7 @@
           "fields": [
             {
               "title": "my_proof",
-              "$ref": "#/definitions/List$aiken_merkle_tree~1mt~1ProofItem$ByteArray"
+              "$ref": "#/definitions/aiken_merkle_tree~1mt~1Proof<ByteArray>"
             },
             {
               "title": "user_data",

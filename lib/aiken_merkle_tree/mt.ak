@@ -1,3 +1,5 @@
+use aiken/collection/list
+use aiken/crypto.{Hash, Sha2_256, sha2_256}
 // This code is sourced from https://github.com/aiken-lang/trees/blob/main/lib/aiken/trees/mt.ak
 //
 // A purely functional implementation of MerkleTrees that is suitable for
@@ -9,10 +11,8 @@
 //
 // The code ported to Aiken from [Hydra](https://github.com/input-output-hk/hydra/blob/master/plutus-merkle-tree/src/Plutus/MerkleTree.hs)
 
-use aiken/bytearray
-use aiken/hash.{Hash, Sha2_256, sha2_256}
-use aiken/list
 use aiken/option.{choice, is_none}
+use aiken/primitive/bytearray
 
 /// An opaque representation of a [MerkleTree](#MerkleTree). See
 /// [from_list](#from_list) to construct a tree from a list of elements.
@@ -30,8 +30,8 @@ pub opaque type MerkleTree<a> {
 pub type Proof<a> =
   List<ProofItem<a>>
 
-/// An opaque proof element.
-pub opaque type ProofItem<a> {
+/// An proof element.
+pub type ProofItem<a> {
   Left(Root)
   Right(Root)
 }
@@ -40,7 +40,7 @@ pub opaque type ProofItem<a> {
 /// [from_hash](#from_hash) to convert back-and-forth between this and
 /// classic hashes. This type exists mainly to disambiguate between standard
 /// value (leaf) hash from tree hashes.
-pub opaque type Root {
+pub type Root {
   inner: ByteArray,
 }
 
@@ -65,29 +65,24 @@ pub fn from_hash(hash: Hash<alg, a>) -> Root {
 /// Deconstruct a [MerkleTree](#MerkleTree) back to a list of elements.
 pub fn to_list(self: MerkleTree<a>) -> List<a> {
   when self is {
-    Empty ->
-      []
-    Leaf { value, .. } ->
-      [value]
+    Empty -> []
+    Leaf { value, .. } -> [value]
     Node { left, right, .. } -> list.concat(to_list(left), to_list(right))
   }
 }
 
 test to_list_1() {
-  let items =
-    []
+  let items = []
   to_list(from_list(items, identity)) == items
 }
 
 test to_list_2() {
-  let items =
-    ["dog"]
+  let items = ["dog"]
   to_list(from_list(items, identity)) == items
 }
 
 test to_list_3() {
-  let items =
-    ["dog", "cat", "mouse"]
+  let items = ["dog", "cat", "mouse"]
   to_list(from_list(items, identity)) == items
 }
 
@@ -145,20 +140,17 @@ pub fn size(self: MerkleTree<a>) -> Int {
 }
 
 test size_1() {
-  let items =
-    []
+  let items = []
   size(from_list(items, identity)) == 0
 }
 
 test size_2() {
-  let items =
-    ["dog"]
+  let items = ["dog"]
   size(from_list(items, identity)) == 1
 }
 
 test size_3() {
-  let items =
-    ["dog", "cat", "mouse"]
+  let items = ["dog", "cat", "mouse"]
   size(from_list(items, identity)) == 3
 }
 
