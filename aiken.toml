@@ -1,5 +1,5 @@
 name = "aiken-lang/aiken_merkle_tree"
-version = "0.0.0"
+version = "0.1.0"
 license = "Apache-2.0"
 description = "Aiken contracts for project 'aiken-lang/aiken-merkle-tree'"
 
@@ -10,5 +10,5 @@ platform = "github"
 
 [[dependencies]]
 name = "aiken-lang/stdlib"
-version = "1.7.0"
+version = "v3.0.0"
 source = "github"
